@@ -1,8 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:infra="clr-namespace:Sales.Infraestructure"
              x:Class="Sales.App">
     <Application.Resources>
+
+        <ResourceDictionary>
+<!--Locator  lo creo en app.xaml-->
+            <infra:InstanceLocator x:Key="locator"></infra:InstanceLocator>
+
+            <x:String x:Key="UrlAPI" >http://192.168.0.11</x:String>
+            
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>
