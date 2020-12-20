@@ -10,6 +10,7 @@ namespace Sales.API.Controllers
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Description;
+    using Sales.Common.Models;
     using Sales.Domain.Models;
     public class ProductsController : ApiController
     {

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource  locator}  }"
              x:Class="Sales.Views.ProductsPage"
-             Title="Products"
+             xmlns:i18n="clr-namespace:Sales.Helpers"
+             Title="{i18n:Translate Products}"
              >
     <ContentPage.Content><!--Padding  para las margenes-->
         <StackLayout  BindingContext="{Binding   Products}" Padding="5">
@@ -19,12 +20,13 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.6*" />
-                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="0.2*" />
+                                    <ColumnDefinition Width="0.2*"/>
                                         </Grid.ColumnDefinitions>
 
                                 <Label  Grid.Column="0" Text="{Binding Description}"  FontAttributes="Bold" ></Label>
                                 <Label  Grid.Column="1" Text="{Binding Price, StringFormat='{0:C2}'}"  HorizontalTextAlignment="End" ></Label>
-
+                                <Image    Grid.Column="2" Source="{Binding imagePath}"></Image>       
 
                             </Grid>
                         </ViewCell>

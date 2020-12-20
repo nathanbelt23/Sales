@@ -10,6 +10,7 @@ namespace Sales.ViewModels
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Sales.Common.Models;
+    using Sales.Helpers;
     using Sales.Services;
     using Xamarin.Forms;
 
@@ -57,14 +58,29 @@ namespace Sales.ViewModels
         private async void LoadProducts()
         {
 
+            ApiService api = new ApiService();
+
+            var isConecction = await api.CheckConnection();
+
+            if (!isConecction.IsSuccess)
+            {
+
+                this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, isConecction.Message, Languages.Accept);
+                return;
+            }
+
+
+                string strUrl =  Application.Current.Resources["UrlAPI"].ToString();
+          
 
           this.IsRefreshing = true;
             //string strUrl = await Application.Current.Resources["UrlAPI"].ToString();
-            var response = await apiService.GetList<Product>("http://192.168.0.11", "/Sales.API/Api", "/Products");
+            var response = await apiService.GetList<Product>(strUrl, "/Sales.API/Api", "/Products");
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             var list = (List<Product>)response.Result;
