@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sales.Resources {
+namespace Sales.Resources
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     /// </summary>
@@ -22,76 +23,92 @@ namespace Sales.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
-        
+    internal class Resource
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource() {
+        internal Resource()
+        {
         }
-        
+
         /// <summary>
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sales.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Busca una cadena traducida similar a Acept.
         /// </summary>
-        internal static string Acept {
-            get {
+        internal static string Acept
+        {
+            get
+            {
                 return ResourceManager.GetString("Acept", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
-        internal static string Error {
-            get {
+        internal static string Error
+        {
+            get
+            {
                 return ResourceManager.GetString("Error", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Busca una cadena traducida similar a No internet conecction.
         /// </summary>
-        internal static string NoInthernet {
-            get {
+        internal static string NoInthernet
+        {
+            get
+            {
                 return ResourceManager.GetString("NoInthernet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Busca una cadena traducida similar a Please turn on  your Internet.
         /// </summary>
-        internal static string TurnOnInterner {
-            get {
+        internal static string TurnOnInterner
+        {
+            get
+            {
                 return ResourceManager.GetString("TurnOnInterner", resourceCulture);
             }
 
@@ -104,5 +121,87 @@ namespace Sales.Resources {
                 return ResourceManager.GetString("Products", resourceCulture);
             }
         }
-    }
+
+        internal static string Description
+        {
+            get
+            {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+
+        internal static string DescripcionPlaceHolder
+        {
+            get
+            {
+                return ResourceManager.GetString("DescripcionPlaceHolder", resourceCulture);
+            }
+        }
+
+
+        internal static string AddProduct
+        {
+            get
+            {
+                return ResourceManager.GetString("AddProduct", resourceCulture);
+            }
+
+
+        }
+
+
+
+                 internal static string Price
+        {
+            get
+            {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+
+
+        }
+
+        internal static string PricePlaceHolder
+        {
+            get
+            {
+                return ResourceManager.GetString("PricePlaceHolder", resourceCulture);
+            }
+
+
+        }
+
+
+
+        internal static string Remarks
+               {
+            get
+            {
+                return ResourceManager.GetString("Remarks", resourceCulture);
+            }
+
+
+        }
+
+
+        internal static string Save
+        {
+            get
+            {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+
+
+        }
+
+
+        internal static string ChangueImage
+        {
+            get
+            {
+                return ResourceManager.GetString("ChangueImage", resourceCulture);
+            }
+
+        }
+      }
 }

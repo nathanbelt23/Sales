@@ -132,4 +132,25 @@
   <data name="Products" xml:space="preserve">
     <value>PT-Products</value>
   </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>pt-product</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>pt-Descripcion</value>
+  </data>
+  <data name="DescripcionPlaceHolder" xml:space="preserve">
+    <value>pt-ingrese la descripcion</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Pt-Price</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Pt-Observacion</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Pt_Save</value>
+  </data>
+  <data name="ChangueImage" xml:space="preserve">
+    <value>pt-Toca la imagen para cambiar</value>
+  </data>
 </root>

@@ -133,4 +133,31 @@
   <data name="Products" xml:space="preserve">
     <value>Productos</value>
   </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Adicione product</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="DescripcionPlaceHolder" xml:space="preserve">
+    <value>Ingrese la descripcion</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Observacion</value>
+  </data>
+  <data name="ImagePath" xml:space="preserve">
+    <value>Ruta de la imagen</value>
+  </data>
+  <data name="IsVariable" xml:space="preserve">
+    <value>Es variable</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ChangueImage" xml:space="preserve">
+    <value>Toca la imagen para cambiar</value>
+  </data>
 </root>

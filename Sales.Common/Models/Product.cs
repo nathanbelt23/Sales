@@ -13,11 +13,11 @@ namespace Sales.Common.Models
         public string Description { get; set; }
 
 
-       
+
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
-        [Display(Name ="Image")]
+        [Display(Name = "Image")]
         public string ImagePath { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
@@ -26,9 +26,22 @@ namespace Sales.Common.Models
         [Display(Name = "Is Variable")]
         public bool IsVariable { get; set; }
 
-        [Display (Name = "Publish On")]
+        [Display(Name = "Publish On")]
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
+
+
+        public  string ImageFullPath 
+            {
+            get {
+                if (string.IsNullOrEmpty(ImagePath))
+                {
+                    return "NoProduct.png";
+                }
+                return $"http://192.168.0.11/SalesBACKEND{ImagePath.Replace("~","")}";
+            }
+            }
+
 
         public override string ToString()
         {

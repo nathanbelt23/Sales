@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sales.Views.AddProductPage"
+             BindingContext="{Binding Main,Source={StaticResource  locator}  }"
+             xmlns:i18n="clr-namespace:Sales.Helpers"
+             Title="{i18n:Translate AddProduct}"
+             
+             >
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout  BindingContext="{Binding AddProduct}" Padding="5" >
+                <Label Text="Add Product"  x:Name="lblHome" x:Uid="lblNathan"/>
+                <Image Source="NoProduct"></Image>
+                <Label Text="{i18n:Translate  ChangueImage}"     FontSize="Small" HorizontalOptions="Center"></Label>
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{i18n:Translate Description}" Grid.Column="0" Grid.Row="0"  VerticalOptions="Center"></Label>
+                    <Entry   Placeholder="{i18n:Translate DescripcionPlaceHolder }"  Grid.Column="1" Grid.Row="0"  ></Entry>
+                    <Label Text="{i18n:Translate Price}"  Grid.Column="0" Grid.Row="1" VerticalOptions="Center"></Label>
+                    <Entry   Keyboard="Numeric"  Placeholder="{i18n:Translate PricePlaceHolder }"   Grid.Column="1" Grid.Row="1" ></Entry>
+                    <Label Text="{i18n:Translate Remarks}" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"></Label>
+                    <Editor    VerticalOptions="FillAndExpand"   Grid.Column="1" Grid.Row="2"></Editor>
+                </Grid>
+
+                <ActivityIndicator VerticalOptions="CenterAndExpand"></ActivityIndicator>
+                <Button  Text="{i18n:Translate Save}" BorderRadius="23" HeightRequest="46" BackgroundColor="Navy" TextColor="White">
+
+                </Button>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

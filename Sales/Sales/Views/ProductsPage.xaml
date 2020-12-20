@@ -5,11 +5,19 @@
              x:Class="Sales.Views.ProductsPage"
              xmlns:i18n="clr-namespace:Sales.Helpers"
              Title="{i18n:Translate Products}"
+             
+             
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add" Command="{Binding  AddProductCommand}" Text="Add">
+            
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content><!--Padding  para las margenes-->
-        <StackLayout  BindingContext="{Binding   Products}" Padding="5">
+        <ScrollView  BindingContext="{Binding   Products}" Padding="5">
 
-            <ListView   ItemsSource="{Binding   Products}" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand }}"
+            <ListView   ItemsSource="{Binding   Products}" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand }"
                         IsPullToRefreshEnabled="True"
                         >
 
@@ -19,15 +27,19 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.6*" />
-                                    <ColumnDefinition Width="0.2*" />
-                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                <Label  Grid.Column="0" Text="{Binding Description}"  FontAttributes="Bold" ></Label>
-                                <Label  Grid.Column="1" Text="{Binding Price, StringFormat='{0:C2}'}"  HorizontalTextAlignment="End" ></Label>
-                                <Image    Grid.Column="2" Source="{Binding imagePath}"></Image>       
+                                <Image   VerticalOptions="Center"  Grid.Column="0" Source="{Binding ImageFullPath}"  WidthRequest="100"></Image>
 
+                                <StackLayout  Grid.Column="1">
+                                <Label  VerticalOptions="Center"   Text="{Binding Description}"  FontAttributes="Bold" ></Label>
+                                    <Label  VerticalOptions="Center"   Text="{Binding Remarks}"   ></Label>
+                                </StackLayout>
+                                <Label VerticalOptions="Center"   Grid.Column="2" Text="{Binding Price, StringFormat='{0:C2}'}"  HorizontalTextAlignment="End" ></Label>
+                              
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -35,6 +47,6 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
