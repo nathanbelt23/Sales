@@ -10,7 +10,11 @@
             <infra:InstanceLocator x:Key="locator"></infra:InstanceLocator>
 
             <x:String x:Key="UrlAPI" >http://192.168.0.11</x:String>
-            
+            <x:String x:Key="Prefix" >/Sales.API/Api</x:String>
+            <x:String x:Key="Token" >/Sales.API/Token</x:String>
+            <x:String x:Key="ControllerProduct" >/Products</x:String>
+
+
         </ResourceDictionary>
 
     </Application.Resources>

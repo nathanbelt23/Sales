@@ -9,10 +9,15 @@
              >
     <ContentPage.Content>
 
-        <ScrollView>
+        <ScrollView>  
             <StackLayout  BindingContext="{Binding AddProduct}" Padding="5" >
                 <Label Text="Add Product"  x:Name="lblHome" x:Uid="lblNathan"/>
-                <Image Source="NoProduct"></Image>
+                <Image 
+                    Source="{Binding ImageSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangueImageCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="{i18n:Translate  ChangueImage}"     FontSize="Small" HorizontalOptions="Center"></Label>
 
                 <Grid >
@@ -28,15 +33,15 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="{i18n:Translate Description}" Grid.Column="0" Grid.Row="0"  VerticalOptions="Center"></Label>
-                    <Entry   Placeholder="{i18n:Translate DescripcionPlaceHolder }"  Grid.Column="1" Grid.Row="0"  ></Entry>
+                    <Entry   Placeholder="{i18n:Translate DescripcionPlaceHolder }"  Grid.Column="1" Grid.Row="0"  Text="{Binding Description}" ></Entry>
                     <Label Text="{i18n:Translate Price}"  Grid.Column="0" Grid.Row="1" VerticalOptions="Center"></Label>
-                    <Entry   Keyboard="Numeric"  Placeholder="{i18n:Translate PricePlaceHolder }"   Grid.Column="1" Grid.Row="1" ></Entry>
+                    <Entry   Keyboard="Numeric"  Placeholder="{i18n:Translate PricePlaceHolder }"   Grid.Column="1" Grid.Row="1" Text="{Binding Price}" ></Entry>
                     <Label Text="{i18n:Translate Remarks}" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"></Label>
-                    <Editor    VerticalOptions="FillAndExpand"   Grid.Column="1" Grid.Row="2"></Editor>
+                    <Editor    VerticalOptions="FillAndExpand"   Grid.Column="1" Grid.Row="2" Text="{Binding Remarks}"></Editor>
                 </Grid>
 
-                <ActivityIndicator VerticalOptions="CenterAndExpand"></ActivityIndicator>
-                <Button  Text="{i18n:Translate Save}" BorderRadius="23" HeightRequest="46" BackgroundColor="Navy" TextColor="White">
+                <ActivityIndicator VerticalOptions="CenterAndExpand" IsRunning="{Binding IsRunning}"></ActivityIndicator>
+                <Button  Text="{i18n:Translate Save}" BorderRadius="23" HeightRequest="46" BackgroundColor="Navy" TextColor="White" IsEnabled="{Binding IsEnabled}" Command="{Binding SaveCommand}" >
 
                 </Button>
 

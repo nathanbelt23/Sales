@@ -7,6 +7,7 @@ namespace Sales.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Sales.Common.Models;
@@ -17,15 +18,29 @@ namespace Sales.ViewModels
     public class ProductsViewModel : BaseViewModel
     {
 
-
+        #region Atributos
         private ApiService apiService;
         //  Con la p minuscula es private
-        private ObservableCollection<Product> products;
-
+        private ObservableCollection<ProductItemViewModel> products;
         // IsRefreshing uno lo  ve en el listview de products
-
+       
         private bool isRefreshing;
 
+        private  string filter;
+
+        #endregion
+
+        #region Propiedades
+        public List<Product> MyProducts { get; set; }
+        public string Filter {
+            get {
+                return this.filter;
+                    }
+            set {
+                this.filter = value;
+                this.RefreshList();
+            }
+        }
         public bool IsRefreshing
         {
             get { return this.isRefreshing; }
@@ -36,7 +51,7 @@ namespace Sales.ViewModels
             }
         }
 
-        public ObservableCollection<Product> Products
+        public ObservableCollection<ProductItemViewModel> Products
         {
             get
             {
@@ -47,14 +62,19 @@ namespace Sales.ViewModels
                 this.SetValue(ref this.products, value);
             }
         }
+        #endregion
 
+        #region  Constructor
         public ProductsViewModel()
         {
-
+            instance = this;
             this.apiService = new ApiService();
             this.LoadProducts();
         }
 
+        #endregion
+
+        #region Metodos
         private async void LoadProducts()
         {
 
@@ -76,16 +96,61 @@ namespace Sales.ViewModels
 
           this.IsRefreshing = true;
             //string strUrl = await Application.Current.Resources["UrlAPI"].ToString();
-            var response = await apiService.GetList<Product>(strUrl, "/Sales.API/Api", "/Products");
+            var response = await apiService.GetList<Product>(strUrl, "/Sales.API/Api", "/Products", Settings.TokenType, Settings.AccessToken);
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
-            var list = (List<Product>)response.Result;
-            this.Products = new ObservableCollection<Product>(list);
+            this.MyProducts = (List<Product>)response.Result;
+            this.RefreshList();
             this.IsRefreshing = false;
+        }
+
+        public void RefreshList()
+        {
+
+            if (string.IsNullOrEmpty(Filter))
+            {
+                var myListProductItemViewModel = this.MyProducts.Select(p => new ProductItemViewModel()
+                {
+
+                    ProductId = p.ProductId,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageArray = p.ImageArray,
+                    IsVariable = p.IsVariable,
+                    ImagePath = p.ImagePath,
+                    PublishOn = p.PublishOn,
+                    Remarks = p.Remarks
+
+                });
+
+                this.Products = new ObservableCollection<ProductItemViewModel>(myListProductItemViewModel.OrderBy(P => P.Description));
+
+            }
+
+            else
+
+            {
+                var myListProductItemViewModel = this.MyProducts.Select(p => new ProductItemViewModel()
+                {
+
+                    ProductId = p.ProductId,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageArray = p.ImageArray,
+                    IsVariable = p.IsVariable,
+                    ImagePath = p.ImagePath,
+                    PublishOn = p.PublishOn,
+                    Remarks = p.Remarks
+
+                }).Where(p=>p.Description.ToLower().Contains(Filter.ToLower() ) || p.Remarks.ToLower().Contains(Filter.ToLower())).ToList();
+
+                this.Products = new ObservableCollection<ProductItemViewModel>(myListProductItemViewModel.OrderBy(P => P.Description));
+
+            }
         }
 
         public ICommand RefreshCommand {
@@ -94,10 +159,36 @@ namespace Sales.ViewModels
             {
                 return new RelayCommand(LoadProducts);
             }
+        }
 
-              
 
 
-                }
+        public ICommand SearchComand { get
+            {
+                return  new RelayCommand(RefreshList);
+            }
+
+        }
+
+       
+
+
+
+        #endregion
+
+        #region Singleton
+
+        public static ProductsViewModel instance;
+
+        public static ProductsViewModel GetInstance()
+        {
+            if (instance == null)
+                return new ProductsViewModel();
+            return instance;
+
+        }
+
+        #endregion
     }
 }
+

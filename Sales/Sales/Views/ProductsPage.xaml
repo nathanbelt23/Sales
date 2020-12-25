@@ -15,8 +15,14 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content><!--Padding  para las margenes-->
-        <ScrollView  BindingContext="{Binding   Products}" Padding="5">
+        <StackLayout    Padding="5" BindingContext="{Binding Products}"  >
 
+            <SearchBar Placeholder="{i18n:Translate Search}"  Text="{Binding Filter}" SearchCommand="{Binding SearchComand}" >
+                
+                
+                
+            </SearchBar>
+            
             <ListView   ItemsSource="{Binding   Products}" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand }"
                         IsPullToRefreshEnabled="True"
                         >
@@ -25,12 +31,21 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="{i18n:Translate Edit}"  Command="{Binding EditProductCommand}"></MenuItem>
+                                <MenuItem Text="{i18n:Translate Delete}"  Command="{Binding DeleteProductCommand}"  IsDestructive="True"></MenuItem>
+                                
+                            </ViewCell.ContextActions>
+                            
+                            
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
+
 
                                 <Image   VerticalOptions="Center"  Grid.Column="0" Source="{Binding ImageFullPath}"  WidthRequest="100"></Image>
 
@@ -39,7 +54,14 @@
                                     <Label  VerticalOptions="Center"   Text="{Binding Remarks}"   ></Label>
                                 </StackLayout>
                                 <Label VerticalOptions="Center"   Grid.Column="2" Text="{Binding Price, StringFormat='{0:C2}'}"  HorizontalTextAlignment="End" ></Label>
-                              
+                                <Image Source="ic_launcher.png" VerticalOptions="Center" Grid.Column="3" >
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding  EditProductCommand}"></TapGestureRecognizer>
+
+                                    </Image.GestureRecognizers>
+
+                                </Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -47,6 +69,6 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

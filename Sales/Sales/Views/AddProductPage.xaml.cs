@@ -18,10 +18,14 @@ namespace Sales.Views
         }
 
 
-            public AddProductPage (string  strNombre)
-		{
-			InitializeComponent ();
+        public AddProductPage(string  strNombre)
+        {
+            InitializeComponent();
+
             lblHome.Text = strNombre;
-		}
-	}
+
+        }
+
+
+    }
 }
