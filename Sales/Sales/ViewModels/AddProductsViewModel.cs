@@ -242,7 +242,7 @@ namespace Sales.ViewModels
             this.isEnabled = true;
             this.isRunning = false;
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
        
 
         }

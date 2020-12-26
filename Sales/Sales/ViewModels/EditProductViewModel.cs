@@ -202,7 +202,7 @@ namespace Sales.ViewModels
             this.isEnabled = true;
             this.isRunning = false;
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
 
 
         }
@@ -268,7 +268,7 @@ namespace Sales.ViewModels
             this.IsEnabled = true; 
             productsViewModel.RefreshList();
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
 
 
         }

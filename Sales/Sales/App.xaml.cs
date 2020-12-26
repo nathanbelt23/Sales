@@ -4,7 +4,9 @@ using Sales.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System;
-
+using Sales.Views;
+using Newtonsoft.Json;
+using Sales.Common.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Sales
@@ -12,15 +14,18 @@ namespace Sales
 
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; }
+
         public App()
         {
             InitializeComponent();
 
             if (Settings.IsRemenber & !  string.IsNullOrEmpty(Settings.AccessToken)&& Settings.ExpiresDate>DateTime.UtcNow)
             {
+               var   mainView  =MainViewModel.GetInstance();
+                mainView.UserASP = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
 
-                MainViewModel.GetInstance().Products = new ProductsViewModel();
-                MainPage = new NavigationPage(new Views.ProductsPage());
+                MainPage =new MasterPage();
             }
             else
             {

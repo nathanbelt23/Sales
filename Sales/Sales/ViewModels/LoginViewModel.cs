@@ -8,6 +8,8 @@ namespace Sales.ViewModels
     using Sales.Helpers;
     using Sales.Services;
     using Sales.Views;
+    using Sales.Common.Models;
+    using Newtonsoft.Json;
 
     public class LoginViewModel:BaseViewModel
     {
@@ -110,16 +112,23 @@ namespace Sales.ViewModels
             Settings.AccessToken = token.AccessToken;
             Settings.IsRemenber = this.IsRemembered;
             Settings.ExpiresDate = token.Expires;
-
+            var prefix = Application.Current.Resources["Prefix"].ToString();
+            var controller = Application.Current.Resources["UrlUsersController"].ToString();
+            var response = await this.apiService.GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
+            if (response.IsSuccess)
+            {
+                var userASP = (MyUserASP)response.Result;
+                MainViewModel.GetInstance().UserASP = userASP;
+                Settings.UserASP = JsonConvert.SerializeObject(userASP);
+            }
 
             this.IsRunning = false;
             this.IsEnabled = true;
 
 
 
-            MainViewModel.GetInstance().Products = new ProductsViewModel();
-
-             Application.Current.MainPage = new ProductsPage();
+    
+             Application.Current.MainPage = new MasterPage();
 
 
 
@@ -130,7 +139,8 @@ namespace Sales.ViewModels
         public ICommand RegisterCommand { get { return new RelayCommand(Register); } }
        private async void Register()
         {
-            throw new NotImplementedException();
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
 
 

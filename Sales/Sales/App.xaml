@@ -13,8 +13,8 @@
             <x:String x:Key="Prefix" >/Sales.API/Api</x:String>
             <x:String x:Key="Token" >/Sales.API/Token</x:String>
             <x:String x:Key="ControllerProduct" >/Products</x:String>
-
-
+            <x:String x:Key="UrlUsersController" >/Users</x:String>
+            <x:String x:Key="UrlSitio" >http://192.168.0.11/SalesBACKEND/</x:String>
         </ResourceDictionary>
 
     </Application.Resources>

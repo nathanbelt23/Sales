@@ -20,6 +20,7 @@ namespace Sales.Helpers
         private const string tokenType = "TokenType";
         private const string accessToken = "AccessToken";
         private const  string  isRemenber= "IsRemenber";
+        private const string userASP = "USERASP";
         private const string expiresDate = "";
         private static readonly string stringSettingsDefault = string.Empty;
         private static readonly bool boolDefault = false;
@@ -76,6 +77,20 @@ namespace Sales.Helpers
                 AppSettings.AddOrUpdateValue(expiresDate, value);
             }
         }
+
+
+        public static string UserASP
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(userASP, "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(userASP, value);
+            }
+        }
+
 
     }
 }
