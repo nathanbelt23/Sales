@@ -157,7 +157,7 @@
       <Version>1.6.292</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.7.335</Version>
+      <Version>1.8.0-beta</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.2.0</Version>
@@ -227,5 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\nouser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flechaazul.png" />
   </ItemGroup>
 </Project>

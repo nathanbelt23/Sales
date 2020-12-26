@@ -1,73 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BindingContext="{Binding Main,Source={StaticResource  locator}  }"
-             x:Class="Sales.Views.ProductsPage"
              xmlns:i18n="clr-namespace:Sales.Helpers"
-             Title="{i18n:Translate Products}"
-             
-             
-             >
+             x:Class="Sales.Views.ProductsPage"
+             BindingContext="{Binding Main, Source={StaticResource locator}}"
+             Title="{i18n:Translate Products}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_action_add" Command="{Binding  AddProductCommand}" Text="Add">
-            
-        </ToolbarItem>
+        <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddProductCommand}"/>
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.Content><!--Padding  para las margenes-->
-        <StackLayout    Padding="5" BindingContext="{Binding Products}"  >
-
-            <SearchBar Placeholder="{i18n:Translate Search}"  Text="{Binding Filter}" SearchCommand="{Binding SearchComand}" >
-                
-                
-                
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Products}"
+            Padding="5">
+            <SearchBar
+                HeightRequest="30"
+                Placeholder="{i18n:Translate Search}"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter}">
             </SearchBar>
-            
-            <ListView   ItemsSource="{Binding   Products}" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand }"
-                        IsPullToRefreshEnabled="True"
-                        >
-
-
+            <ListView
+                HasUnevenRows="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding Products}"
+                RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="{i18n:Translate Edit}"  Command="{Binding EditProductCommand}"></MenuItem>
-                                <MenuItem Text="{i18n:Translate Delete}"  Command="{Binding DeleteProductCommand}"  IsDestructive="True"></MenuItem>
-                                
+                                <MenuItem Text="{i18n:Translate Edit}" Command="{Binding EditProductCommand}"/>
+                                <MenuItem Text="{i18n:Translate Delete}" Command="{Binding DeleteProductCommand}" IsDestructive="True"/>
                             </ViewCell.ContextActions>
-                            
-                            
                             <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditProductCommand}"/>
+                                </Grid.GestureRecognizers>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-
-                                <Image   VerticalOptions="Center"  Grid.Column="0" Source="{Binding ImageFullPath}"  WidthRequest="100"></Image>
-
-                                <StackLayout  Grid.Column="1">
-                                <Label  VerticalOptions="Center"   Text="{Binding Description}"  FontAttributes="Bold" ></Label>
-                                    <Label  VerticalOptions="Center"   Text="{Binding Remarks}"   ></Label>
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                </Image>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Text="{Binding Description}">
+                                    </Label>
+                                    <Label
+                                        Text="{Binding Remarks}">
+                                    </Label>
                                 </StackLayout>
-                                <Label VerticalOptions="Center"   Grid.Column="2" Text="{Binding Price, StringFormat='{0:C2}'}"  HorizontalTextAlignment="End" ></Label>
-                                <Image Source="ic_launcher.png" VerticalOptions="Center" Grid.Column="3" >
-
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer  Command="{Binding  EditProductCommand}"></TapGestureRecognizer>
-
-                                    </Image.GestureRecognizers>
-
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="{Binding Price, StringFormat='{0:C2}'}"
+                                    VerticalOptions="Center">
+                                </Label>
+                                <Image
+                                    Grid.Column="3"
+                                    Source="ic_chevron_right"
+                                    VerticalOptions="Center">
                                 </Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
-                    
                 </ListView.ItemTemplate>
-
             </ListView>
         </StackLayout>
     </ContentPage.Content>

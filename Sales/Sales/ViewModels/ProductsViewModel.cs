@@ -96,7 +96,7 @@ namespace Sales.ViewModels
                 var answer = await LoadProductsFromAPI();
                 if (answer)
                 {
-                    this.SaveProductsDB();
+                   this.SaveProductsDB();
                 }
 
             }
@@ -106,6 +106,8 @@ namespace Sales.ViewModels
         
             }
 
+         
+
             if (this.MyProducts.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.NoProductsMessage, Languages.Accept);
@@ -113,7 +115,6 @@ namespace Sales.ViewModels
                 return;
             }
          
-          
             this.RefreshList();
             this.IsRefreshing = false;
         }
@@ -126,8 +127,16 @@ namespace Sales.ViewModels
         private async void SaveProductsDB()
         {
 
-            await dataService.DeleteAllProducts();
-             dataService.Insert(MyProducts);
+            //await 
+            try
+            {
+              await  dataService.DeleteAllProducts();
+            }
+            catch (Exception E)
+            {
+                var str = E.Message;
+            }
+                dataService.Insert(MyProducts);
         }
 
         private async Task<bool> LoadProductsFromAPI()
